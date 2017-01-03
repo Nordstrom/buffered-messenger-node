@@ -1,6 +1,6 @@
 'use strict'
 
-var BufferMessenger = require('./lib/bufferMessenger')
+var BufferMessenger = require('./lib/intervalBuffer')
 var messageHandler = require('./lib/messageHandler.js')
 
 module.exports = {
