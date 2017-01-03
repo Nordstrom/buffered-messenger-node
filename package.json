@@ -1,0 +1,51 @@
+{
+  "name": "buffered-messenger-node",
+  "version": "0.0.1",
+  "description": "Buffered messenger for Node.js - Accumulate the messages in the buffer, and flushe/send for certain interval",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nordstrom/buffered-messenger-node.git"
+  },
+  "scripts": {
+    "test": "snazzy && istanbul cover _mocha",
+    "lint": "snazzy",
+    "tdd": "mocha -w",
+    "ci": "snazzy && istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+  },
+  "files": [
+    "index.js",
+    "lib/*",
+    "test/*",
+    "LICENSE",
+    "README.md"
+  ],
+  "author": "Yun Wang (yunwang240)",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/Nordstrom/buffered-messenger-node.git#readme",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "influx": "^5.0.4",
+    "lodash": "^4.17.2",
+    "should": "^11.1.2"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.15",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "mocha-lcov-reporter": "^1.2.0",
+    "snazzy": "^5.0.0",
+    "standard": "^8.6.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Nordstrom/interval-buffer-node/issues"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "buffer",
+    "interval",
+    "messenger"
+  ]
+}
