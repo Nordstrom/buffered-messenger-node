@@ -12,36 +12,40 @@ npm install git+https://github.com/Nordstrom/buffered-messenger-node.git --save
 ### Usage
 To get started, initialize a new instance with a messageHandler, which will be used to flush the messages after certain interval or when the buffer is full.
 ```js
-var BufferMessenger = require('../index.js').BufferMessenger
-var  client = new BufferMessenger({
-          messageHandler: log,
-          maxBufferSize: 126,
-          bufferFlushInterval: 500
-        })
+const Messenger = require('buffered-messenger-node')
+const messenger = new Messenger({
+    handler: (message) => {
+        messages.forEach((message) => {
+           console.log(JSON.stringify(message))
+        }
+    }
+})
 ```
 Or to use the provided messageHandler
 ```js
-var bufferMessenger = require('buffered-messenger-node')
-var client = new bufferMessenger.BufferMessenger({
-        messageHandler: bufferMessenger.handlerInfluxLines({
-          host: 'localhost',
-          port: 8186,
-          database: 'influxdb'
-
-        }),
-        maxBufferSize: 1024
-        bufferFlushInterval: 15000,
-        bufferType: 'object'
-  })
+const rp = require('request-promise')  // or any other library needed to send the messages
+const Messenger = require('buffered-messenger-node')
+const messenger = new Messenger({
+    maxBufferSize: 5,  // defaults to 10 items in the buffer array
+    flushInterval: 1000,      // milliseconds - defaults to 10000 or 10 secs
+    handler: (messages) => {
+       // return promise from request-promise
+       return rp({
+          method: 'POST',
+          uri: 'http://api.posttestserver.com/post',
+          body: JSON.stringify(messages)
+       })
+    }
+})
 ```
 
-To pass a message with string type to the buffer messenger
+To pass a message to the buffered messenger
 
 ```js
 client.send('sample message')
 ```
 
-Or pass a message with object
+Or pass a message object
 ```js
 client.send({ message: 'test-message', trace: 'my-trace' })
 ```

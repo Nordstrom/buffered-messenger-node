@@ -74,7 +74,7 @@ describe('basic interval buffer', function () {
     client = new BufferMessenger({
       handler: log,
       maxBufferSize: 5,
-      bufferFlushInterval: 500
+      flushInterval: 500
     })
 
     var messages = []
