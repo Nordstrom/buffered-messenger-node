@@ -1,8 +1,6 @@
 'use strict'
 
 const Promise = require('bluebird')
-const _ = require('lodash')
-// var should = require('should')
 const describe = require('mocha').describe
 const it = require('mocha').it
 const beforeEach = require('mocha').beforeEach
