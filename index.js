@@ -1,9 +1,4 @@
 'use strict'
 
-var BufferMessenger = require('./lib/intervalBuffer')
-var messageHandler = require('./lib/messageHandler.js')
+module.exports = require('./lib/intervalBuffer')
 
-module.exports = {
-  BufferMessenger,
-  handlerInfluxLines: messageHandler
-}

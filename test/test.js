@@ -7,7 +7,8 @@ const describe = require('mocha').describe
 const it = require('mocha').it
 const beforeEach = require('mocha').beforeEach
 const util = require('util')
-const BufferMessenger = require('../index.js').BufferMessenger
+// const BufferMessenger = require('../index.js').BufferMessenger
+const BufferMessenger = require('../index.js')
 
 function log (message) {
   if (message.length > 0) {
@@ -22,13 +23,13 @@ describe('basic interval buffer', function () {
 
   beforeEach(function () {
     client = new BufferMessenger({
-      messageHandler: log,
-      maxBufferSize: 126,
-      bufferFlushInterval: 500
+      handler: log,
+      maxBufferSize: 5,
+      flushInterval: 500
     })
   })
 
-  it('test max buffer with string', function () {
+  it('test max buffer', function () {
     var message = 'test buffer for round %s '
     var messages = []
     for (var i = 0; i < 10; i++) {
@@ -45,7 +46,7 @@ describe('basic interval buffer', function () {
       })
   })
 
-  it('test interval with string', function () {
+  it('test interval', function () {
     var message = 'test buffer for round %s '
     return client.send(util.format(message, 0))
       .then(function () {
@@ -71,39 +72,11 @@ describe('basic interval buffer', function () {
       })
   })
 
-  it('test formatter', () => {
-    function messageFormatter (message) {
-      var formatted = ''
-      _.forEach(message, (value, key) => {
-        formatted += key + '=' + value + ';'
-      })
-      return formatted
-    }
-
-    client = new BufferMessenger({
-      messageFormatter: messageFormatter,
-      messageHandler: log,
-      maxBufferSize: 126,
-      bufferFlushInterval: 500
-    })
-
-    var msg = {client: 'test-client'}
-    for (var i = 0; i < 10; i++) {
-      msg['message' + i] = 'test-message-' + i
-    }
-
-    return client.send(msg)
-      .then(function () {
-        return client.close()
-      })
-  })
-
   it('test max buffer with object', function () {
     client = new BufferMessenger({
-      messageHandler: log,
-      maxBufferSize: 126,
-      bufferFlushInterval: 500,
-      bufferType: 'object'
+      handler: log,
+      maxBufferSize: 5,
+      bufferFlushInterval: 500
     })
 
     var messages = []
