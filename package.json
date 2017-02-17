@@ -41,6 +41,15 @@
   "directories": {
     "test": "test"
   },
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "before",
+      "beforeEach",
+      "afterEach"
+    ]
+  },
   "keywords": [
     "buffer",
     "interval",

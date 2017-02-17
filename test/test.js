@@ -1,11 +1,7 @@
 'use strict'
 
 const Promise = require('bluebird')
-const describe = require('mocha').describe
-const it = require('mocha').it
-const beforeEach = require('mocha').beforeEach
 const util = require('util')
-// const BufferMessenger = require('../index.js').BufferMessenger
 const BufferMessenger = require('../index.js')
 
 function log (message) {
@@ -27,6 +23,10 @@ describe('basic interval buffer', function () {
     })
   })
 
+  afterEach(function () {
+    return client.close()
+  })
+
   it('test max buffer', function () {
     var message = 'test buffer for round %s '
     var messages = []
@@ -39,9 +39,6 @@ describe('basic interval buffer', function () {
           console.log('loop through %s', message)
         })
     })
-      .then(function () {
-        return client.close()
-      })
   })
 
   it('test interval', function () {
@@ -65,9 +62,6 @@ describe('basic interval buffer', function () {
       .then(function () {
         console.log('loop 2')
       })
-      .then(function () {
-        return client.close()
-      })
   })
 
   it('test max buffer with object', function () {
@@ -87,8 +81,5 @@ describe('basic interval buffer', function () {
           console.log('loop through %s', message)
         })
     })
-      .then(function () {
-        return client.close()
-      })
   })
 })

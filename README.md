@@ -6,7 +6,7 @@ Buffers the messages in certain interval as the buffer size allowed; and send th
 ## Install
 Install with
 ```
-npm install git+https://github.com/Nordstrom/buffered-messenger-node.git --save
+npm install buffered-messenger-node --save
 ```
 
 ### Usage
