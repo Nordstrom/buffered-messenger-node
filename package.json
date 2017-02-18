@@ -1,6 +1,6 @@
 {
   "name": "buffered-messenger-node",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Buffered messenger for Node.js - Accumulate the messages in the buffer, and flushe/send for certain interval",
   "main": "index.js",
   "repository": {
